@@ -1,1 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    if (argc == 1) {
+        printf("Erro: Nenhum número informado.\n");
+        return 1;
+    }
+
+    int n = argc - 1;
+    int *numbers = (int*)malloc(n * sizeof(int));
+    if (numbers == NULL) {
+        printf("Erro: Falha na alocação de memória.\n");
+        return 1;
+    }
+
+    // Lendo os números fornecidos
+    for (int i = 0; i < n; i++) {
+        numbers[i] = atoi(argv[i + 1]);
+    }
+
+    // Calculando a média
+    double sum = 0.0;
+    int min = numbers[0];
+    int max = numbers[0];
+    for (int i = 0; i < n; i++) {
+        sum += numbers[i];
+        if (numbers[i] < min) {
+            min = numbers[i];
+        }
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    double average = sum / n;
+
+    // Ordenando os números em ordem crescente
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (numbers[i] > numbers[j]) {
+                int temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+            }
+        }
+    }
+
+    // Imprimindo os resultados
+    printf("Quantidade de números recebidos: %d\n", n);
+    printf("Valor médio dos números: %.1f\n", average);
+    printf("Menor número: %d\n", min);
+    printf("Maior número: %d\n", max);
+    printf("Números em ordem crescente:");
+    for (int i = 0; i < n; i++) {
+        printf(" %d", numbers[i]);
+    }
+    printf("\n");
+
+    // Liberando a memória alocada
+    free(numbers);
+
+    return 0;
+}
 
