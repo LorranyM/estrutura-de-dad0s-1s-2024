@@ -37,10 +37,10 @@ int main(int argc, char *argv[]) {
     // Ordenando os números em ordem crescente
     for (int i = 0; i < n - 1; i++) {
         for (int j = i + 1; j < n; j++) {
-            if (numbers[i] > numbers[j]) {
-                int temp = numbers[i];
-                numbers[i] = numbers[j];
-                numbers[j] = temp;
+            if (numero[i] > numero[j]) {
+                int temp = numero[i];
+                numero[i] = numero[j];
+                numero[j] = temp;
             }
         }
     }
@@ -52,12 +52,12 @@ int main(int argc, char *argv[]) {
     printf("Maior número: %d\n", max);
     printf("Números em ordem crescente:");
     for (int i = 0; i < n; i++) {
-        printf(" %d", numbers[i]);
+        printf(" %d", numero[i]);
     }
     printf("\n");
 
     // Liberando a memória alocada
-    free(numbers);
+    free(numero);
 
     return 0;
 }
