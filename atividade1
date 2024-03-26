@@ -1,25 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Função para comparar dois inteiros (necessária para qsort)
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
 int main(int argc, char *argv[]) {
+    // Verifica se nenhum número foi fornecido como argumento
     if (argc == 1) {
         printf("Erro: Nenhum número informado.\n");
         return 1;
     }
 
+    // Número de elementos é o número de argumentos menos 1 (o nome do programa)
     int n = argc - 1;
-    int *numero = (int*)malloc(n * sizeof(int));
+    int *numero = (int*)malloc(n * sizeof(int)); // Aloca memória para armazenar os números
     if (numero == NULL) {
         printf("Erro: Falha na alocação de memória.\n");
         return 1;
     }
 
-    // Lendo os números fornecidos
+    // Lê os números fornecidos como argumentos
     for (int i = 0; i < n; i++) {
-        numero[i] = atoi(argv[i + 1]);
+        numero[i] = atoi(argv[i + 1]); // Converte o argumento para inteiro
     }
 
-    // Calculando a média
+    // Calcula a soma, o menor e o maior número
     double sum = 0.0;
     int min = numero[0];
     int max = numero[0];
@@ -32,20 +39,14 @@ int main(int argc, char *argv[]) {
             max = numero[i];
         }
     }
+
+    // Calcula o valor médio dos números
     double average = sum / n;
 
-    // Ordenando os números em ordem crescente
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (numero[i] > numero[j]) {
-                int temp = numero[i];
-                numero[i] = numero[j];
-                numero[j] = temp;
-            }
-        }
-    }
+    // Ordena os números em ordem crescente
+    qsort(numero, n, sizeof(int), compare);
 
-    // Imprimindo os resultados
+    // Imprime os resultados
     printf("Quantidade de números recebidos: %d\n", n);
     printf("Valor médio dos números: %.1f\n", average);
     printf("Menor número: %d\n", min);
@@ -56,9 +57,8 @@ int main(int argc, char *argv[]) {
     }
     printf("\n");
 
-    // Liberando a memória alocada
+    // Libera a memória alocada
     free(numero);
 
     return 0;
 }
-
