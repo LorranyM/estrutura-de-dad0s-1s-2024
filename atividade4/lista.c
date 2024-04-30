@@ -49,12 +49,12 @@ void liberar_lista(No* H);
         H = NULL;
     }
 
-int verificar_existência(No* H, char valor_busca){               
+int verificar_existencia(No* H, char valor_busca){               
     if(H != NULL){
         if(H->valor_busca){
             return 1;
         }
-        return verificar_existência(H->proximo_no, valor_busca);
+        return verificar_existencia(H->proximo_no, valor_busca);
     }
     return 0;
 }
@@ -77,10 +77,27 @@ void imprimir_inversa(No* H){
 }
 
 void inserir_no_i(No* H, No* no, int i){
-   if(H != NULL){
-    if(i == 0){
+   if(H != NULL & i > 0){
+    if( == 1){
         no->proximo_no = H->proximo_no;
-    }
-    
+        H->proximo_no = no;
    }
+   else{
+    inserir_no_i(H->proximo_no, i-1, no);
+   }
+ 
+  }
+
+}
+
+void remove_no_i(No* H, int i, No* no_ant){
+    if(H != NULL){
+        if(i == 0 & no_ant != NULL){
+            no_ant->proximo_no = H->proximo_no;
+            free(H);
+        }
+        else{
+            remove_no_i(H->proximo_no, i-1, H);
+        }
+    }
 }
