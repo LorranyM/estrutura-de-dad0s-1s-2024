@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[]){
 
-    char** tabla = tabela_hash();
+    char** tabela = tabela_hash();
 
     put("DF", "Brasilia", tabela);
     put("SE", "Aracaju", tabela);
