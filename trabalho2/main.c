@@ -19,7 +19,7 @@ int main(int argc,char *argv[]) {
     inorder(root);
     printf("\n");
 
-    printf("Percorrendo em pré-ordem (in-order): ");
+    printf("Percorrendo em pré-ordem (pre-order): ");
     preorder(root);
     printf("\n");
 
