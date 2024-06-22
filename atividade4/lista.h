@@ -13,5 +13,6 @@ int verificar_existencia(No* H, char valor_busca);
 int verificar_ocorrencias(No* H, char valor_busca);
 void imprimir_inversa(No* H);
 void inserir_no_i(No* H, No* no, int i);
+void remove_no_i(No* H, int i, No* no_ant)
 
 
